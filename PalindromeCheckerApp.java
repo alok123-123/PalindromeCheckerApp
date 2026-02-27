@@ -1,34 +1,44 @@
-public class PalindromeCheckerApp{
 
-       public static void main(String[] args) {
-            // Declare and initialize the input string
-        String input = "radar";
+import java.util.Scanner;
+       import java.util.Stack;
+sahilpublic class PalindromeCheckerApp{
 
-        // Convert the string into a character array
-        char[] chars = input.toCharArray();
+       
 
-        // Initialize pointer at the beginning
-        int start = 0;
 
-        // Initialize pointer at the end
-        int end = chars.length - 1;
 
-        // Assume palindrome initially
-        boolean isPalindrome = true;
+    public static void main(String[] args) {
 
-        // Continue comparison until pointers cross
-        while (start < end) {
-            if (chars[start] != chars[end]) {
-                isPalindrome = false;
-                break;
-            }
-            start++;
-            end--;
+        Scanner sc = new Scanner(System.in);
+
+        System.out.println("===== Palindrome Checker App (Stack Based) =====");
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        // Convert to lowercase for case-insensitive checking
+        String original = input.toLowerCase();
+
+        // Create Stack
+        Stack<Character> stack = new Stack<>();
+
+        // Push characters into stack
+        for (int i = 0; i < original.length(); i++) {
+            stack.push(original.charAt(i));
         }
 
-        // Output
-        System.out.println("Input : " + input);
-        System.out.println("Is Palindrome? : " + isPalindrome);
-            
-       }
+        // Pop characters to form reversed string
+        String reversed = "";
+        while (!stack.isEmpty()) {
+            reversed += stack.pop();
+        }
+
+        // Compare original and reversed
+        if (original.equals(reversed)) {
+            System.out.println("Result: The given string is a Palindrome.");
+        } else {
+            System.out.println("Result: The given string is NOT a Palindrome.");
+        }
+
+        sc.close();
+    }
 }
