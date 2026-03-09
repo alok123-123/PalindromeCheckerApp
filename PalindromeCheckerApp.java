@@ -1,16 +1,14 @@
 import java.util.Scanner;
 
-public class PalindromeCheckerApp {
+// Service class that contains palindrome logic
+class PalindromeChecker {
 
-    public static boolean isPalindrome(String str) {
-
-        // Normalize string (remove spaces and convert to lowercase)
-        str = str.replaceAll("\\s+", "").toLowerCase();
+    // Method to check palindrome
+    public boolean checkPalindrome(String str) {
 
         int start = 0;
         int end = str.length() - 1;
 
-        // Compare characters
         while (start < end) {
             if (str.charAt(start) != str.charAt(end)) {
                 return false;
@@ -21,6 +19,10 @@ public class PalindromeCheckerApp {
 
         return true;
     }
+}
+
+// Main class
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
@@ -29,8 +31,13 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a string: ");
         String input = sc.nextLine();
 
-        if (isPalindrome(input)) {
-            System.out.println("The string is a Palindrome (ignoring case and spaces).");
+        // Create object of PalindromeChecker
+        PalindromeChecker checker = new PalindromeChecker();
+
+        boolean result = checker.checkPalindrome(input);
+
+        if (result) {
+            System.out.println("The string is a Palindrome.");
         } else {
             System.out.println("The string is NOT a Palindrome.");
         }
